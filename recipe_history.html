@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1 class="mb-4">Recipe History</h1>
+
+{% for recipe in recipes %}
+<div class="card mb-3">
+    <div class="card-header">
+        <h5>Generated on {{ recipe.created_at|date:"M d, Y H:i" }}</h5>
+    </div>
+    <div class="card-body">
+        <h6>Ingredients used: {{ recipe.ingredients }}</h6>
+        <pre style="white-space: pre-wrap; font-family: inherit;">{{ recipe.recipe }}</pre>
+    </div>
+</div>
+{% empty %}
+<p>No recipes generated yet.</p>
+{% endfor %}
+
+<a href="{% url 'index' %}" class="btn btn-primary">Back to Generator</a>
+{% endblock %}

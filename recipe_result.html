@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1 class="mb-4">Your Custom Recipe</h1>
+
+<div class="card mb-4">
+    <div class="card-header">
+        <h5>Generated from: {{ ingredients }}</h5>
+    </div>
+    <div class="card-body">
+        <pre style="white-space: pre-wrap; font-family: inherit;">{{ recipe }}</pre>
+    </div>
+</div>
+
+<a href="{% url 'index' %}" class="btn btn-primary">Generate Another</a>
+<a href="{% url 'recipe_history' %}" class="btn btn-secondary">View History</a>
+{% endblock %}

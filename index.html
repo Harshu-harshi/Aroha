@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1 class="mb-4">AI Recipe Generator</h1>
+<form method="post">
+    {% csrf_token %}
+    
+    <div class="mb-3">
+        <label for="ingredients" class="form-label">Available Ingredients (comma separated)</label>
+        <textarea class="form-control" id="ingredients" name="ingredients" rows="3" required></textarea>
+    </div>
+    
+    <div class="row mb-3">
+        <div class="col-md-4">
+            <label for="dietary_preferences" class="form-label">Dietary Preferences</label>
+            <select class="form-select" id="dietary_preferences" name="dietary_preferences">
+                <option value="">None</option>
+                <option value="vegetarian">Vegetarian</option>
+                <option value="vegan">Vegan</option>
+                <option value="gluten-free">Gluten-Free</option>
+                <option value="keto">Keto</option>
+                <option value="low-carb">Low-Carb</option>
+            </select>
+        </div>
+        
+        <div class="col-md-4">
+            <label for="cuisine_type" class="form-label">Cuisine Type</label>
+            <select class="form-select" id="cuisine_type" name="cuisine_type">
+                <option value="">Any</option>
+                <option value="Italian">Italian</option>
+                <option value="Mexican">Mexican</option>
+                <option value="Asian">Asian</option>
+                <option value="Indian">Indian</option>
+                <option value="Mediterranean">Mediterranean</option>
+            </select>
+        </div>
+        
+        <div class="col-md-4">
+            <label for="meal_type" class="form-label">Meal Type</label>
+            <select class="form-select" id="meal_type" name="meal_type">
+                <option value="">Any</option>
+                <option value="breakfast">Breakfast</option>
+                <option value="lunch">Lunch</option>
+                <option value="dinner">Dinner</option>
+                <option value="dessert">Dessert</option>
+                <option value="snack">Snack</option>
+            </select>
+        </div>
+    </div>
+    
+    <button type="submit" class="btn btn-primary">Generate Recipe</button>
+    <a href="{% url 'recipe_history' %}" class="btn btn-secondary">View History</a>
+    <a href="{% url 'documentation' %}" class="btn btn-secondary">Documentation</a>
+    
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags }} mt-3">{{ message }}</div>
+        {% endfor %}
+    {% endif %}
+</form>
+{% endblock %}
